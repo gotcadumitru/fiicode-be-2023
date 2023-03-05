@@ -27,7 +27,7 @@ public class Doctor {
     private Long visitTimeEnd;
     private String cabinetNo;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Storage> documents;
 
     private Long longitude;
