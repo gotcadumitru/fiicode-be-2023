@@ -24,13 +24,13 @@ public class DoctorService {
 
     public Doctor saveNewDoctor(DoctorCreateBodyData requestData) {
         List<Storage> documents = requestData.getDocuments().stream().map(storageService::getFileById).toList();
-        Doctor doctor = new Doctor(requestData.getTimeStart(),requestData.getTimeEnd(),requestData.getVisitTimeStart(),requestData.getVisitTimeEnd(),requestData.getCabinetNo(),documents, requestData.getLongitude(), requestData.getLatitude());
+        Doctor doctor = new Doctor(requestData.getTimeStart(),requestData.getTimeEnd(),requestData.getVisitTimeStart(),requestData.getVisitTimeEnd(),requestData.getCabinetNo(),documents, requestData.getLongitude(), requestData.getLatitude(),requestData.getWorkAddress());
         return doctorRepository.save(doctor);
     }
 
     public Doctor editDoctor(Long doctorId,DoctorCreateBodyData requestData) {
         List<Storage> documents = requestData.getDocuments().stream().map(storageService::getFileById).toList();
-        Doctor doctor = new Doctor(doctorId,requestData.getTimeStart(),requestData.getTimeEnd(),requestData.getVisitTimeStart(),requestData.getVisitTimeEnd(),requestData.getCabinetNo(),documents, requestData.getLongitude(), requestData.getLatitude());
+        Doctor doctor = new Doctor(doctorId,requestData.getTimeStart(),requestData.getTimeEnd(),requestData.getVisitTimeStart(),requestData.getVisitTimeEnd(),requestData.getCabinetNo(),documents, requestData.getLongitude(), requestData.getLatitude(),requestData.getWorkAddress());
         return doctorRepository.save(doctor);
     }
 

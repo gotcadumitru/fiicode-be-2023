@@ -30,10 +30,11 @@ public class Doctor {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Storage> documents;
 
-    private String longitude;
-    private String latitude;
+    private Long longitude;
+    private Long latitude;
+    private String workAddress;
 
-    public Doctor(Long timeStart, Long timeEnd, Long visitTimeStart, Long visitTimeEnd, String cabinetNo, List<Storage> documents, String longitude, String latitude) {
+    public Doctor(Long timeStart, Long timeEnd, Long visitTimeStart, Long visitTimeEnd, String cabinetNo, List<Storage> documents, Long longitude, Long latitude, String workAddress) {
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.visitTimeStart = visitTimeStart;
@@ -42,5 +43,6 @@ public class Doctor {
         this.documents = documents;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.workAddress = workAddress;
     }
 }

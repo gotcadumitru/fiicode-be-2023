@@ -21,8 +21,8 @@ public class DoctorCreateBodyData {
     private final Long visitTimeStart;
     private final Long visitTimeEnd;
     private final String cabinetNo;
-
-    private final String longitude;
-    private final String latitude;
+    private final Long longitude;
+    private final Long latitude;
+    private final String workAddress;
     private final List<Long> documents;
 }

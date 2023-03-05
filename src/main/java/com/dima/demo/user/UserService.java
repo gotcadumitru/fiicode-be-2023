@@ -1,15 +1,10 @@
 package com.dima.demo.user;
 
 import com.dima.demo.authentication.Provider;
-import com.dima.demo.doctor.Doctor;
-import com.dima.demo.doctor.DoctorCreateBodyData;
 import com.dima.demo.exception.ApiRequestException;
 import com.dima.demo.oauth2.CustomOAuth2User;
-import com.dima.demo.registration.RegistrationRequestDoctor;
-import com.dima.demo.registration.token.ConfirmationToken;
 import com.dima.demo.registration.token.ConfirmationTokenService;
 import com.dima.demo.security.config.JwtUtils;
-import com.dima.demo.storage.Storage;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,10 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -83,7 +76,7 @@ public class UserService implements UserDetailsService {
                     user.getLastName(),
                     user.getEmail(),
                     bCryptPasswordEncoder.encode(user.getEmail()+"secret"),
-                    UserRole.PACIENT,
+                    UserRole.PATIENT,
                     oauth2ClientName,
                     false,
                     true,

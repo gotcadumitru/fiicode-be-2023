@@ -12,11 +12,6 @@ import java.util.List;
 public class MedicalFormController {
     public final MedicalFormService medicalFormService;
 
-    @GetMapping
-    public List<MedicalForm> getAllPatients() {
-        return medicalFormService.getAllAppointments();
-    }
-
     @GetMapping(path = "user/{userId}")
     public List<MedicalForm> getMedicalFormsByUserId(@PathVariable @NonNull Long userId) {
         return medicalFormService.getAllMedicalFormsByUserId(userId);

@@ -16,11 +16,6 @@ public class MedicalFormService {
     private final MedicalFormRepository medicalFormRepository;
     private final UserService userService;
 
-
-    public List<MedicalForm> getAllAppointments() {
-        return medicalFormRepository.findAll();
-    }
-
     public MedicalForm saveNewMedicalForm(Long patientId, Long doctorId, String patientDescription, String patientTreatment, LocalDateTime time) {
         User userPatient = userService.getUserById(patientId);
         User userDoctor = userService.getUserById(doctorId);
