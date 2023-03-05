@@ -5,7 +5,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: ${SPRING_ENV}
   datasource:
     password: ${DATASOURCE_PASSWORD}
     url: jdbc:${DATASOURCE_URL}
