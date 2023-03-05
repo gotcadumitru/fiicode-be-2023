@@ -100,7 +100,7 @@ public class WebSecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry
                         .addMapping("/**")
-                        .allowedOrigins("https://localhost:3000")
+                        .allowedOrigins("https://localhost:3000","https://fiicode-fe-2023.vercel.app")
                         .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
             }
         };

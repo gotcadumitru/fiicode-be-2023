@@ -30,7 +30,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("https://localhost:3000").withSockJS();
+        registry.addEndpoint("/ws").setAllowedOrigins("https://localhost:3000","https://fiicode-fe-2023.vercel.app").withSockJS();
     }
 
 

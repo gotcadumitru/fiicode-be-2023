@@ -46,7 +46,7 @@ public class PatientService {
 
     public Boolean inviteNewPatient(PatientInviteBodyData request) {
 
-        String url = "https://localhost:3000/auth/register-user?doctorId=" + request.getDoctorId();
+        String url = "https://fiicode-fe-2023.vercel.app/auth/register-user?doctorId=" + request.getDoctorId();
         if (request.getEmail() != null) {
             emailService.send(request.getEmail(), "Inregistrare Medify", buildInviteEmail(request.getPatientName(), url));
             return true;
