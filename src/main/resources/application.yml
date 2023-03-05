@@ -11,7 +11,7 @@ server:
 spring:
   datasource:
     password: ${DATASOURCE_PASSWORD}
-    url: ${DATASOURCE_URL}
+    url: jdbc:${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
     driver-class-name: org.postgresql.Driver
   jpa:
