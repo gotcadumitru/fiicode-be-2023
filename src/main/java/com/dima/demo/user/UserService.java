@@ -41,20 +41,23 @@ public class UserService implements UserDetailsService {
             }
         }
 
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        User savedUser = userRepository.save(user);
-        return savedUser;
+        user.setPassword(getEncodedPassword(user.getPassword()));
+        return userRepository.save(user);
+    }
+
+    public String getEncodedPassword(String password) {
+        return bCryptPasswordEncoder.encode(password);
     }
 
     public User editUser(Long userId, UserEditBodyData requestData) {
         User user = getUserById(userId);
-        user.setCnp(requestData.getCnp());
-        user.setEmail(requestData.getEmail());
-        user.setFirstName(requestData.getFirstName());
-        user.setLastName(requestData.getLastName());
-        user.setAddress(requestData.getAddress());
-        user.setPhoneNo(requestData.getPhoneNo());
+        if (requestData.getCnp() != null) user.setCnp(requestData.getCnp());
+        if (requestData.getEmail() != null) user.setEmail(requestData.getEmail());
+        if (requestData.getFirstName() != null) user.setFirstName(requestData.getFirstName());
+        if (requestData.getLastName() != null) user.setLastName(requestData.getLastName());
+        if (requestData.getAddress() != null) user.setAddress(requestData.getAddress());
+        if (requestData.getPhoneNo() != null) user.setPhoneNo(requestData.getPhoneNo());
+        if (requestData.getPassword() != null) user.setPassword(getEncodedPassword(requestData.getPassword()));
         return userRepository.save(user);
     }
 
@@ -75,7 +78,7 @@ public class UserService implements UserDetailsService {
                     user.getFirstName(),
                     user.getLastName(),
                     user.getEmail(),
-                    bCryptPasswordEncoder.encode(user.getEmail()+"secret"),
+                    bCryptPasswordEncoder.encode(user.getEmail() + "secret"),
                     UserRole.PATIENT,
                     oauth2ClientName,
                     false,
