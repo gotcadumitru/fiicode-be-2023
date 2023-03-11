@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -19,4 +20,5 @@ public class MedicalFormCreateBodyData {
     private final Long patientId;
     private final Long doctorId;
     private final LocalDateTime time;
+    private final List<Long> documents;
 }

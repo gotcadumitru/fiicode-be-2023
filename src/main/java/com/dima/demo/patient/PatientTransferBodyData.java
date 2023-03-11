@@ -11,5 +11,7 @@ import lombok.ToString;
 @ToString
 public class PatientTransferBodyData {
     private final Long newDoctorId;
+    private final Long oldDoctorId;
     private final Long patientId;
+    private final boolean removeFromOldDoctor;
 }

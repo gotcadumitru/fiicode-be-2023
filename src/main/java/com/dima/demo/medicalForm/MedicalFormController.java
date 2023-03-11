@@ -19,11 +19,11 @@ public class MedicalFormController {
 
     @PostMapping
     public MedicalForm createNewMedicalForm(@RequestBody MedicalFormCreateBodyData request) {
-        return medicalFormService.saveNewMedicalForm(request.getPatientId(), request.getDoctorId(), request.getPatientDescription(), request.getPatientTreatment(), request.getTime());
+        return medicalFormService.saveNewMedicalForm(request.getPatientId(), request.getDoctorId(), request.getPatientDescription(), request.getPatientTreatment(), request.getTime(),request.getDocuments());
     }
 
     @PutMapping(path = "{medicalFormId}")
     public MedicalForm editMedicalForm(@PathVariable @NonNull Long medicalFormId, @RequestBody MedicalFormCreateBodyData request) {
-        return medicalFormService.editMedicalForm(medicalFormId, request.getPatientId(), request.getDoctorId(), request.getPatientDescription(), request.getPatientTreatment(), request.getTime());
+        return medicalFormService.editMedicalForm(medicalFormId, request.getPatientId(), request.getDoctorId(), request.getPatientDescription(), request.getPatientTreatment(), request.getTime(),request.getDocuments());
     }
 }

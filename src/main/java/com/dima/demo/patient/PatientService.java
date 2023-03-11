@@ -39,9 +39,18 @@ public class PatientService {
     }
 
     public Patient transferPatientToNewDoctor(PatientTransferBodyData request) {
-        Patient patient = patientRepository.findByPatientId(request.getPatientId());
-        patientRepository.delete(patient);
-        return saveNewPatient(request.getPatientId(), request.getNewDoctorId());
+        Patient patient = patientRepository.findByPatientIdAndDoctorId(request.getPatientId(), request.getOldDoctorId());
+        Patient patientWithNewDoctor = patientRepository.findByPatientIdAndDoctorId(request.getPatientId(), request.getNewDoctorId());
+        if (patientWithNewDoctor != null)
+            throw new ApiRequestException("Acest pacient deja exista la doctorul la care doriti sa il transferati");
+        User newDoctor = userService.getUserById(request.getNewDoctorId());
+        if (request.isRemoveFromOldDoctor()) {
+            patient.setDoctor(newDoctor);
+            return patientRepository.save(patient);
+        } else {
+
+            return saveNewPatient(request.getPatientId(), request.getNewDoctorId());
+        }
     }
 
     public Boolean inviteNewPatient(PatientInviteBodyData request) {
@@ -49,17 +58,15 @@ public class PatientService {
         String url = "https://fiicode-fe-2023.vercel.app/auth/register-user?doctorId=" + request.getDoctorId();
         if (request.getEmail() != null) {
             emailService.send(request.getEmail(), "Inregistrare Medify", buildInviteEmail(request.getPatientName(), url));
-            return true;
         }
-        if(request.getPhoneNumber()!=null){
-            Twilio.init("AC08d841caf6563f79c357dac0ce929896","f5140e82b8c67f6d9ce65cb592b31abb");
+        if (request.getPhoneNumber() != null) {
+            Twilio.init("AC08d841caf6563f79c357dac0ce929896", "f5140e82b8c67f6d9ce65cb592b31abb");
 
             Message.creator(new PhoneNumber(request.getPhoneNumber()),
-                    new PhoneNumber("+15673717103"), "Buna ziua " + request.getPatientName() +". \nAti primit o invitatie in aplicatia medicului dumneavoastra de familie: \n" + url).create();
-            return true;
+                    new PhoneNumber("+15673717103"), "Buna ziua " + request.getPatientName() + ". \nAti primit o invitatie in aplicatia medicului dumneavoastra de familie: \n" + url).create();
         }
 
-        throw new ApiRequestException("Nu email or phone number");
+        return true;
     }
 
     private String buildInviteEmail(String name, String link) {
