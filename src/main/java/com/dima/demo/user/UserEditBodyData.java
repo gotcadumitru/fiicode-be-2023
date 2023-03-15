@@ -16,6 +16,11 @@ public class UserEditBodyData {
         private final String email;
         @Nullable
         private final String password;
+        @Nullable
+        private final Boolean isEnabled;
+        @Nullable
+        private final Boolean isLocked;
+
         private final String phoneNo;
         private final String address;
         private final String cnp;

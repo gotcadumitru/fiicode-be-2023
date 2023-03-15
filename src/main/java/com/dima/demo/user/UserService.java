@@ -58,6 +58,8 @@ public class UserService implements UserDetailsService {
         if (requestData.getAddress() != null) user.setAddress(requestData.getAddress());
         if (requestData.getPhoneNo() != null) user.setPhoneNo(requestData.getPhoneNo());
         if (requestData.getPassword() != null) user.setPassword(getEncodedPassword(requestData.getPassword()));
+        if (requestData.getIsEnabled() != null) user.setIsEnabled(requestData.getIsEnabled());
+        if (requestData.getIsLocked() != null) user.setIsLocked(requestData.getIsLocked());
         return userRepository.save(user);
     }
 

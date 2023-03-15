@@ -1,12 +1,9 @@
 package com.dima.demo.appointments;
 
-import com.dima.demo.patient.Patient;
-import com.dima.demo.patient.PatientTransferBodyData;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,12 +21,22 @@ public class AppointmentController {
         return appointmentService.getAppointmentById(appointmentId);
     }
 
+    @GetMapping(path = "doctor/{doctorId}")
+    public List<Appointment> getAppointmentByDoctorId(@PathVariable @NonNull Long doctorId){
+        return appointmentService.getAppointmentByDoctorId(doctorId);
+    }
+
+    @GetMapping(path = "patient/{patientId}")
+    public List<Appointment> getAppointmentByPatientId(@PathVariable @NonNull Long patientId){
+        return appointmentService.getAppointmentByPatientId(patientId);
+    }
+
     @PostMapping
     public Appointment createNewAppointment(@RequestBody AppointmentCreateBodyData request) {
-        return appointmentService.saveNewAppointment(request.getCause(),request.getPatientId(),request.getDoctorId(),request.getTime(),request.getImportance());
+        return appointmentService.saveNewAppointment(request.getCause(),request.getPatientId(),request.getDoctorId(),request.getTimeStart(),request.getTimeEnd(),request.getImportance(),request.getDocuments());
     }
     @PutMapping(path = "{appointmentId}")
     public Appointment editAppointment(@PathVariable @NonNull Long appointmentId,@RequestBody AppointmentCreateBodyData request) {
-        return appointmentService.editAppointment(appointmentId,request.getCause(),request.getPatientId(),request.getDoctorId(),request.getTime(),request.getImportance());
+        return appointmentService.editAppointment(appointmentId,request.getCause(),request.getPatientId(),request.getDoctorId(),request.getTimeStart(),request.getTimeEnd(),request.getImportance(),request.getDocuments());
     }
 }

@@ -1,5 +1,6 @@
 package com.dima.demo.appointments;
 
+import com.dima.demo.storage.Storage;
 import com.dima.demo.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -26,15 +28,21 @@ public class Appointment {
     @ManyToOne
     private User doctor;
 
-    private LocalDateTime time;
+    private LocalDateTime timeStart;
+    private LocalDateTime timeEnd;
 
     private AppointmentImportance importance;
 
-    public Appointment(String cause, User patient, User doctor, LocalDateTime time, AppointmentImportance importance) {
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Storage> documents;
+
+    public Appointment(String cause, User patient, User doctor, LocalDateTime timeStart, LocalDateTime timeEnd, AppointmentImportance importance, List<Storage> documents) {
         this.cause = cause;
         this.patient = patient;
         this.doctor = doctor;
-        this.time = time;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
         this.importance = importance;
+        this.documents = documents;
     }
 }
