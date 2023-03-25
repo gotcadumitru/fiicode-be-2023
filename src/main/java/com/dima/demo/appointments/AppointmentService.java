@@ -45,11 +45,8 @@ public class AppointmentService {
         return appointmentRepository.findById(appointmentId).orElseThrow(() -> new ApiRequestException("nifiga nu am gasit, sigur id-ul e bun?"));
     }
 
-    public List<Appointment> getAppointmentByDoctorId(Long doctorId) {
-        return appointmentRepository.getAllByDoctorId(doctorId);
+    public List<Appointment> getAppointmentByUserId(Long userId) {
+        return appointmentRepository.getAllByDoctorIdOrPatientId(userId,userId);
     }
 
-    public List<Appointment> getAppointmentByPatientId(Long patientId) {
-        return appointmentRepository.getAllByPatientId(patientId);
-    }
 }

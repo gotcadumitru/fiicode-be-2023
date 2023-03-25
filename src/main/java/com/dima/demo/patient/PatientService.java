@@ -33,9 +33,9 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
-    public List<Patient> getDoctorPatients(Long id) {
+    public List<Patient> getPatientsListByUserId(Long id) {
 
-        return patientRepository.findAllByDoctor(userService.getUserById(id));
+        return patientRepository.findAllByDoctorIdOrPatientId(id,id);
     }
 
     public Patient transferPatientToNewDoctor(PatientTransferBodyData request) {

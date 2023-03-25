@@ -30,11 +30,11 @@ public class Doctor {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Storage> documents;
 
-    private Long longitude;
-    private Long latitude;
+    private double longitude;
+    private double latitude;
     private String workAddress;
 
-    public Doctor(Long timeStart, Long timeEnd, Long visitTimeStart, Long visitTimeEnd, String cabinetNo, List<Storage> documents, Long longitude, Long latitude, String workAddress) {
+    public Doctor(Long timeStart, Long timeEnd, Long visitTimeStart, Long visitTimeEnd, String cabinetNo, List<Storage> documents, double longitude, double latitude, String workAddress) {
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.visitTimeStart = visitTimeStart;

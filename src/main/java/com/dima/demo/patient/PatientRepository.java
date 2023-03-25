@@ -10,6 +10,7 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     List<Patient> findAllByDoctor(User doctor);
+    List<Patient> findAllByDoctorIdOrPatientId(Long doctorId, Long patientId);
     Patient findByPatientId(Long patientId);
     Patient findByPatientIdAndDoctorId(Long patientId,Long doctorId);
 }

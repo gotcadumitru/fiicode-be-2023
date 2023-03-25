@@ -1,10 +1,6 @@
 package com.dima.demo.patient;
 
-import com.dima.demo.registration.RegistrationRequestPatient;
-import com.dima.demo.registration.token.ConfirmationToken;
-import com.dima.demo.registration.token.ConfirmationTokenService;
 import com.dima.demo.security.config.JwtUtils;
-import com.dima.demo.user.User;
 import com.dima.demo.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -20,9 +16,9 @@ public class PatientController {
     public final UserService userService;
     public final JwtUtils jwtUtils;
 
-    @GetMapping(path = "doctor/{doctorId}")
-    public List<Patient> getAuthUser(@PathVariable @NonNull Long doctorId) {
-        return patientService.getDoctorPatients(doctorId);
+    @GetMapping(path = "user/{userId}")
+    public List<Patient> getPatientsListByUserId(@PathVariable @NonNull Long userId) {
+        return patientService.getPatientsListByUserId(userId);
     }
 
     @PostMapping(path = "transfer")
