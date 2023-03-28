@@ -1,3 +1,9 @@
+Team: Team-team
+Team members:
+  Vizii Adrian
+  Dumitru Gotca
+  Dragos Todoroscean
+
 ### ENV
 https://plugins.jetbrains.com/plugin/7861-envfile
 
