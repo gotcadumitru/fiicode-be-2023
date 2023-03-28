@@ -5,6 +5,23 @@ Team-team
  - Dumitru Gotca
  - Dragos Todoroscean
 
+### Functionalitati extra
+ - Rol de administrator ce poate bloca/activa utilizatorii in aplicatie
+ - Chat text in timp real
+ - Chat audio/video in timp real in care medicii pot comunica cu pacientii
+ - Deploy-ul aplicatiei (fe/be/bd)
+
+### Prezentarea
+
+[google drive video team team](https://drive.google.com/file/d/1Kszq70ThzFOI9T-9rQD9g0ZVPz5AtSFw/view?usp=share_link)
+
+
+
+
+
+
+
+
 ### ENV
 https://plugins.jetbrains.com/plugin/7861-envfile
 
